@@ -29,7 +29,3 @@ jobs:
           body: Credit new contributors by updating AUTHORS
           branch: update-authors
 
-      - name: Enable Pull Request Automerge
-        run: gh pr merge
-        env:
-          GH_TOKEN: ${{ secrets.PAT }}
