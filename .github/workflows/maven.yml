@@ -30,9 +30,10 @@ jobs:
           branch: update-authors
 
 
-      - name: Enable Pull Request Automerge
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+      - name: Auto merge  
+        run: |
+          # 获取 PR 编号
+          PR_NUMBER=$(gh pr list --state open --limit 1 --json number --jq '.[0].number')
+
+          # 合并 PR
+          gh pr merge $PR_NUMBER --auto
