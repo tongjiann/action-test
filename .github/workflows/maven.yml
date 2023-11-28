@@ -33,6 +33,6 @@ jobs:
       - name: Auto merge  
         run: |
           # 合并 PR
-          gh pr merge $PULL_REQUEST_NUMBER --auto
+          gh pr merge 
         env:
           GH_TOKEN: ${{ secrets.PAT }}
