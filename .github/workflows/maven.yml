@@ -27,7 +27,7 @@ jobs:
           commit-message: update authors
           title: Update AUTHORS
           body: Credit new contributors by updating AUTHORS
-          branch: ${{ github.head_ref }}-${{ github.run_id }}
+          branch: ${{ github.run_id }}
 
 
       - name: Enable Pull Request Automerge
