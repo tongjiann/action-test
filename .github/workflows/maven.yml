@@ -28,6 +28,7 @@ jobs:
           title: Update AUTHORS
           body: Credit new contributors by updating AUTHORS
           branch: ${{ github.run_id }}
+          base: main2
 
 
       - name: Enable Pull Request Automerge
