@@ -30,9 +30,7 @@ jobs:
           branch: update-authors
 
 
-      - name: Auto merge  
-        run: |
-          # 合并 PR
-          gh pr merge 
+      - name: Enable Pull Request Automerge
+        run: gh pr merge --merge --auto "1"
         env:
           GH_TOKEN: ${{ secrets.PAT }}
