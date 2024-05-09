@@ -34,7 +34,7 @@ jobs:
     - name: Auto-review pull request
       uses: reviewdog/action-setup@v2 # 步骤5：自动审查合并请求
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PAT }}
         tool_name: eslint # 你使用的审查工具，例如 eslint
         level: info
         reporter: github-pr-check
@@ -43,4 +43,4 @@ jobs:
       if: github.event_name == 'pull_request' && github.event.action == 'opened' # 仅当新建合并请求时触发
       uses: pascalgn/automerge-action@v0.14.0 # 步骤6：自动合并合并请求
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.PAT }}
