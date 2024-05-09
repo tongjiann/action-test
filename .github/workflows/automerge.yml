@@ -1,28 +1,46 @@
-name: automerge
+name: Automated Workflow
+
 on:
-  pull_request:
-    types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
-  status: {}
+  push:
+
 jobs:
-  automerge:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@v0.15.3"
-        env:
-          GITHUB_TOKEN: "${{ secrets.PAT }}"
+    - name: Checkout code
+      uses: actions/checkout@v2 # 步骤1：签出分支
+
+    - name: Make changes to pull request
+      run: date +%s > report.txt
+
+    - name: Commit and push changes
+      run: |
+        # 步骤3：提交并推送修改
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git commit -m "Automated tasks"
+        git push
+
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v3 # 步骤4：创建合并请求
+      with:
+        title: Automated Pull Request
+        body: Automated pull request created by GitHub Actions.
+        branch: your-feature-branch
+        base: main
+
+    - name: Auto-review pull request
+      uses: reviewdog/action-setup@v2 # 步骤5：自动审查合并请求
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        tool_name: eslint # 你使用的审查工具，例如 eslint
+        level: info
+        reporter: github-pr-check
+
+    - name: Auto-merge pull request
+      if: github.event_name == 'pull_request' && github.event.action == 'opened' # 仅当新建合并请求时触发
+      uses: pascalgn/automerge-action@v0.14.0 # 步骤6：自动合并合并请求
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
