@@ -27,3 +27,4 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.PAT }}"
           MERGE_LABELS: ""
+          MERGE_DELETE_BRANCH: "true"
