@@ -26,10 +26,7 @@ jobs:
         git push
 
     - name: Create pull request
-      uses: peter-evans/create-pull-request@v3 # 步骤4：创建合并请求
-      with:
-        title: Automated Pull Request
-        body: Automated pull request created by GitHub Actions.
+      uses: peter-evans/create-pull-request@v6
 
     - name: Auto-review pull request
       uses: reviewdog/action-setup@v1
