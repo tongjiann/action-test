@@ -23,13 +23,13 @@ jobs:
         title: the pr title
         body: the pr body
     - name: delay
-      run: sleep 10
+      run: sleep 3
 
     - name: automerge
       if: ${{ steps.cpr.outputs.pull-request-number }}
       uses: "pascalgn/automerge-action@v0.16.3"
       env:
-        GITHUB_TOKEN: "{{ secrets.PAT }}"
+        GITHUB_TOKEN: "${{ secrets.PAT }}"
         MERGE_LABELS: ""
         MERGE_DELETE_BRANCH: "true"
         PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-number }}
