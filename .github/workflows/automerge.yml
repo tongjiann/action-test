@@ -16,27 +16,10 @@ jobs:
     - name: Make changes to pull request
       run: date +%s > report.txt
 
-    # - name: Commit and push changes
-    #   run: |
-    #     # 步骤3：提交并推送修改
-    #     git config --global user.email "actions@github.com"
-    #     git config --global user.name "GitHub Actions"
-    #     git add .
-    #     git commit -m "Automated tasks"
-    #     git push origin main:temp
-
     - name: Create pull request
       uses: peter-evans/create-pull-request@v6
       with:
         branch: pr-branch
-
-    - name: Auto-review pull request
-      uses: reviewdog/action-setup@v1
-      with:
-        github_token: ${{ secrets.PAT }}
-        tool_name: eslint # 你使用的审查工具，例如 eslint
-        level: info
-        reporter: github-pr-check
 
     - name: Auto-merge pull request
       if: github.event_name == 'pull_request' && github.event.action == 'opened' # 仅当新建合并请求时触发
