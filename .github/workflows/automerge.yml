@@ -3,6 +3,7 @@ name: Automated Workflow
 on:
   workflow_dispatch:
   pull_request:
+  push:
 
 jobs:
   build:
@@ -29,7 +30,7 @@ jobs:
       with:
         title: Automated Pull Request
         body: Automated pull request created by GitHub Actions.
-        branch: your-feature-branch
+        branch: main22
         base: main
 
     - name: Auto-review pull request
