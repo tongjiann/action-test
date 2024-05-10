@@ -1,5 +1,4 @@
-name: Automated Workflow
-
+name: make change and create pr
 on:
   workflow_dispatch:
   # push:
