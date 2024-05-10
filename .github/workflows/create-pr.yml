@@ -1,0 +1,27 @@
+name: Create Pull Request on Push
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pr-branch# 指定触发推送的目标分支
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Create Pull Request
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.PAT }}
+        script: |
+          const { data: newPullRequest } = await github.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: "Automated Pull Request",
+            head: "pr-branch", // 新创建的 Pull Request 将基于此分支
+            base: "main", // 新创建的 Pull Request 将合并到的目标分支
+            body: "This is an automated Pull Request created by GitHub Actions."
+          });
+          console.log('Created Pull Request:', newPullRequest.html_url);
