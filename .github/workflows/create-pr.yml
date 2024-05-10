@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - pr-branch# 指定触发推送的目标分支
+      - pr-branch # 指定触发推送的目标分支
 
 jobs:
   create-pull-request:
@@ -16,7 +16,7 @@ jobs:
       with:
         github-token: ${{ secrets.PAT }}
         script: |
-          const { data: newPullRequest } = await github.pulls.create({
+          const newPullRequest = await github.pulls.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "Automated Pull Request",
@@ -24,4 +24,4 @@ jobs:
             base: "main", // 新创建的 Pull Request 将合并到的目标分支
             body: "This is an automated Pull Request created by GitHub Actions."
           });
-          console.log('Created Pull Request:', newPullRequest.html_url);
+          console.log('Created Pull Request:', newPullRequest.data.html_url);
