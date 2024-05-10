@@ -23,7 +23,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add .
         git commit -m "Automated tasks"
-        git push
+        git push -u origin/temp
 
     - name: Create pull request
       uses: peter-evans/create-pull-request@v6
