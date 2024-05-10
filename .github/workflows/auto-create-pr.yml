@@ -26,10 +26,10 @@ jobs:
       run: sleep 3
 
     - name: automerge
-      if: ${{ steps.cpr.outputs.pull-request-number }}
+      # if: ${{ steps.cpr.outputs.pull-request-number }}
       uses: "pascalgn/automerge-action@v0.16.3"
       env:
         GITHUB_TOKEN: "${{ secrets.PAT }}"
         MERGE_LABELS: ""
         MERGE_DELETE_BRANCH: "true"
-        PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-number }}
+        # PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-number }}
