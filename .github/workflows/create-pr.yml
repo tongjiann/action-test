@@ -16,7 +16,7 @@ jobs:
       with:
         github-token: "${{ secrets.PAT }}"
         script: |
-          const newPullRequest = await github.pulls.create({
+          const newPullRequest = github.pulls.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "Automated Pull Request",
