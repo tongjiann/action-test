@@ -23,7 +23,7 @@ jobs:
         title: the pr title
         body: the pr body
     - name: delay
-      run: sleep 5
+      run: sleep 10
 
     - name: automerge
       if: ${{ steps.cpr.outputs.pull-request-number }}
