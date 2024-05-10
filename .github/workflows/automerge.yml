@@ -30,8 +30,6 @@ jobs:
       with:
         title: Automated Pull Request
         body: Automated pull request created by GitHub Actions.
-        branch: main22
-        base: main
 
     - name: Auto-review pull request
       uses: reviewdog/action-setup@v1
