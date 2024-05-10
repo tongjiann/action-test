@@ -15,6 +15,7 @@ jobs:
       run: date +%s > report.txt
 
     - name: Create pull request
+      id: cpr
       uses: peter-evans/create-pull-request@v6
       with:
         branch: pr-branch
@@ -25,8 +26,10 @@ jobs:
       run: sleep 5
 
     - name: automerge
+      if: ${{ steps.cpr.outputs.pull-request-number }}
       uses: "pascalgn/automerge-action@v0.16.3"
       env:
         GITHUB_TOKEN: "{{ secrets.PAT }}"
         MERGE_LABELS: ""
         MERGE_DELETE_BRANCH: "true"
+        PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-number }}
