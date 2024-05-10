@@ -20,3 +20,6 @@ jobs:
       uses: peter-evans/create-pull-request@v6
       with:
         branch: pr-branch
+        commit-message: commit message
+        title: the pr title
+        body: the pr body
